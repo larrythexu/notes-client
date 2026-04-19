@@ -23,8 +23,11 @@ def get_notes():
 
 @app.post("/notes")
 def create_note(note: Note):
-    notes.create_note(note.note)
-    return {"message": "Note created successfully"}
+    id = notes.create_note(note.note)
+    return {
+        "id": id,
+        "note": note.note
+    }
 
 
 @app.post("/notes/{note_id}/summarize")
